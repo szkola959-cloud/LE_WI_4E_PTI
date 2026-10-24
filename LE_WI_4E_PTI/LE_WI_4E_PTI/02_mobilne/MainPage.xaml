@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotatkiMobilne.MainPage"
+             Title="NotatkiMobilne"
+             BackgroundColor="White">
+
+    <!-- Główny układ pionowy z białym tłem -->
+    <VerticalStackLayout Spacing="15" Padding="20">
+
+        <!-- Tytuł aplikacji -->
+        <Label Text="Moje notatki"
+               FontSize="26"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#111111"
+               Margin="0, 10, 0, 10" />
+
+        <!-- Poziomy układ zawierający pole edycyjne i przycisk -->
+        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+            <!-- Pole edycyjne z podpowiedzią Nowy element -->
+            <Entry x:Name="nowaNotatkaEntry"
+                   Grid.Column="0"
+                   Placeholder="Nowy element"
+                   PlaceholderColor="#888888"
+                   TextColor="#111111"
+                   FontSize="16"
+                   VerticalOptions="Center" />
+
+            <!-- Przycisk z tekstem DODAJ, tłem Crimson (#DC143C) i białym tekstem -->
+            <Button x:Name="dodajButton"
+                    Grid.Column="1"
+                    Text="DODAJ"
+                    Clicked="OnDodajClicked"
+                    BackgroundColor="#DC143C"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="8"
+                    Padding="18, 10"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Widok listy z widocznym separatorem w kolorze Crimson (#DC143C) -->
+        <ListView x:Name="notatkiListView"
+                  ItemsSource="{Binding Notatki}"
+                  SeparatorColor="#DC143C"
+                  SeparatorVisibility="Default"
+                  HasUnevenRows="True"
+                  VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="12, 14">
+                            <Label Text="{Binding .}"
+                                   FontSize="16"
+                                   TextColor="#111111"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
